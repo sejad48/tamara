@@ -1,7 +1,7 @@
 const TOTAL_DAYS = 365;
 const START_DATE = new Date("2026-01-01");
 
-const fullJar = document.getElementById("emptyJar");
+const fullJar = document.getElementById("fullJar");
 const emptyJar = document.getElementById("emptyJar");
 const counter = document.getElementById("counter");
 

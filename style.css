@@ -86,8 +86,8 @@ h1 {
 /* Individual buttons */
 .button {
   position: absolute;
-  width: 18px;
-  height: 18px;
+  width: 50px;
+  height: 50px;
   user-select: none;
 }
 

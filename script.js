@@ -1,11 +1,8 @@
 const TOTAL_DAYS = 365;
 const START_DATE = new Date("2026-01-01");
 
-const fullJar = document.getElementById("fullJar");
-const emptyJar = document.getElementById("emptyJar");
 const counter = document.getElementById("counter");
 
-// Calculate how many days have passed
 function daysPassed() {
   const today = new Date();
   if (today < START_DATE) return 0;
@@ -17,28 +14,44 @@ function daysPassed() {
   );
 }
 
-// Render jars
+function randomPosition() {
+  return {
+    x: 40 + Math.random() * 120,
+    y: 70 + Math.random() * 180
+  };
+}
+
+function createSvgButton(x, y, color) {
+  const circle = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "circle"
+  );
+
+  circle.setAttribute("cx", x);
+  circle.setAttribute("cy", y);
+  circle.setAttribute("r", 6);
+  circle.setAttribute("fill", color);
+
+  return circle;
+}
+
+function renderJar(groupId, count, color) {
+  const group = document.getElementById(groupId);
+  group.innerHTML = "";
+
+  for (let i = 0; i < count; i++) {
+    const { x, y } = randomPosition();
+    group.appendChild(createSvgButton(x, y, color));
+  }
+}
+
 function render() {
   const passed = daysPassed();
 
-  fullJar.innerHTML = "";
-  emptyJar.innerHTML = "";
-
-  for (let i = 0; i < TOTAL_DAYS - passed; i++) {
-    fullJar.appendChild(createButton());
-  }
-
-  for (let i = 0; i < passed; i++) {
-    emptyJar.appendChild(createButton());
-  }
+  renderJar("fullJarButtons", TOTAL_DAYS - passed, "#444");
+  renderJar("emptyJarButtons", passed, "#aaa");
 
   counter.textContent = `${passed} days passed • ${TOTAL_DAYS - passed} days remaining`;
-}
-
-function createButton() {
-  const div = document.createElement("div");
-  div.className = "button-day";
-  return div;
 }
 
 render();

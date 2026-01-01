@@ -21,10 +21,11 @@ function randomButtonImage() {
   return `assets/buttons/button${n}.png`;
 }
 
+/* Percent-based position */
 function randomPosition() {
   return {
-    x: Math.random() * 190,
-    y: Math.random() * 160
+    x: Math.random() * 86, // %
+    y: Math.random() * 86
   };
 }
 
@@ -34,10 +35,10 @@ function createButton() {
   img.className = "button";
 
   const { x, y } = randomPosition();
-  img.style.left = `${x}px`;
-  img.style.top = `${y}px`;
+  img.style.left = `${x}%`;
+  img.style.top = `${y}%`;
 
-  const scale = 0.9 + Math.random() * 0.25;
+  const scale = 0.85 + Math.random() * 0.3;
   const rotate = Math.random() * 30 - 15;
   img.style.transform = `scale(${scale}) rotate(${rotate}deg)`;
 

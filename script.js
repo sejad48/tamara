@@ -1,6 +1,8 @@
 const TOTAL_DAYS = 365;
 const START_DATE = new Date("2026-01-01");
 
+const fullJar = document.getElementById("fullJar");
+const emptyJar = document.getElementById("emptyJar");
 const counter = document.getElementById("counter");
 
 function daysPassed() {
@@ -14,44 +16,49 @@ function daysPassed() {
   );
 }
 
+function randomButtonImage() {
+  const n = Math.floor(Math.random() * 12) + 1;
+  return `assets/buttons/button${n}.png`;
+}
+
 function randomPosition() {
   return {
-    x: 40 + Math.random() * 120,
-    y: 70 + Math.random() * 180
+    x: Math.random() * 120,
+    y: Math.random() * 145
   };
 }
 
-function createSvgButton(x, y, color) {
-  const circle = document.createElementNS(
-    "http://www.w3.org/2000/svg",
-    "circle"
-  );
+function createButton() {
+  const img = document.createElement("img");
+  img.src = randomButtonImage();
+  img.className = "button";
 
-  circle.setAttribute("cx", x);
-  circle.setAttribute("cy", y);
-  circle.setAttribute("r", 6);
-  circle.setAttribute("fill", color);
+  const { x, y } = randomPosition();
+  img.style.left = `${x}px`;
+  img.style.top = `${y}px`;
 
-  return circle;
+  const scale = 0.9 + Math.random() * 0.25;
+  const rotate = Math.random() * 30 - 15;
+  img.style.transform = `scale(${scale}) rotate(${rotate}deg)`;
+
+  return img;
 }
 
-function renderJar(groupId, count, color) {
-  const group = document.getElementById(groupId);
-  group.innerHTML = "";
-
+function renderJar(container, count) {
+  container.innerHTML = "";
   for (let i = 0; i < count; i++) {
-    const { x, y } = randomPosition();
-    group.appendChild(createSvgButton(x, y, color));
+    container.appendChild(createButton());
   }
 }
 
 function render() {
   const passed = daysPassed();
 
-  renderJar("fullJarButtons", TOTAL_DAYS - passed, "#444");
-  renderJar("emptyJarButtons", passed, "#aaa");
+  renderJar(fullJar, TOTAL_DAYS - passed);
+  renderJar(emptyJar, passed);
 
-  counter.textContent = `${passed} days passed • ${TOTAL_DAYS - passed} days remaining`;
+  counter.textContent =
+    `${passed} days passed • ${TOTAL_DAYS - passed} days remaining`;
 }
 
 render();

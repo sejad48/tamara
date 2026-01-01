@@ -1,14 +1,25 @@
 body {
-  font-family: system-ui, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   text-align: center;
   background: #f6f6f6;
+  margin: 0;
+  padding: 40px 20px;
+}
+
+h1 {
+  margin-bottom: 6px;
+}
+
+#counter {
+  color: #555;
 }
 
 .jars {
   display: flex;
   justify-content: center;
-  gap: 60px;
-  margin-top: 40px;
+  gap: 90px;
+  margin-top: 50px;
+  flex-wrap: wrap;
 }
 
 .jar-container {
@@ -17,10 +28,44 @@ body {
   align-items: center;
 }
 
-.jar-svg {
-  width: 220px;
+.jar {
+  position: relative;
+  width: 300px;   /* visual size of 1400px jar */
+  height: 300px;
 }
 
-circle {
-  transition: transform 0.4s ease;
+/* Jar image ON TOP */
+.jar-image {
+  position: relative;
+  width: 100%;
+  height: auto;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Buttons BEHIND the jar */
+.buttons-layer {
+  position: absolute;
+
+  /* 👇 ADJUST THESE to match your jar glass */
+  top: 95px;
+  left: 80px;
+  width: 140px;
+  height: 165px;
+
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Individual buttons */
+.button {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  user-select: none;
+}
+
+/* Passed days feel lighter */
+#emptyJar .button {
+  opacity: 0.6;
 }

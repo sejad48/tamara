@@ -23,8 +23,8 @@ function randomButtonImage() {
 
 function randomPosition() {
   return {
-    x: Math.random() * 200,
-    y: Math.random() * 200
+    x: Math.random() * 190,
+    y: Math.random() * 160
   };
 }
 

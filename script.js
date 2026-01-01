@@ -17,7 +17,7 @@ function daysPassed() {
 }
 
 function randomButtonImage() {
-  const n = Math.floor(Math.random() * 12) + 1;
+  const n = Math.floor(Math.random() * 20) + 1;
   return `assets/buttons/button${n}.png`;
 }
 

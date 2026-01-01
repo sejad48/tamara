@@ -30,31 +30,57 @@ h1 {
 
 .jar {
   position: relative;
-  width: 300px;   /* visual size of 1400px jar */
-  height: 300px;
+  width: 300px; /* unified visual size */
 }
 
 /* Jar image ON TOP */
 .jar-image {
-  position: relative;
   width: 100%;
   height: auto;
   z-index: 2;
+  position: relative;
   pointer-events: none;
 }
 
-/* Buttons BEHIND the jar */
-.buttons-layer {
+/* ===============================
+   BUTTON CONTAINERS (BEHIND JARS)
+   =============================== */
+
+/*
+ EMPTY JAR
+ Original: 1414 × 1799
+ Glass: bottom 1400 × 1400
+ Glass starts ~399px from top
+ 399 / 1799 ≈ 22%
+*/
+#emptyJar {
   position: absolute;
-
-  /* 👇 ADJUST THESE to match your jar glass */
-  top: 95px;
-  left: 80px;
-  width: 140px;
-  height: 165px;
-
   z-index: 1;
   overflow: hidden;
+
+  left: 40px;
+  width: 220px;
+
+  top: 66px;        /* 22% of 300px */
+  height: 220px;
+}
+
+/*
+ FILLED JAR
+ Original: 1815 × 2757
+ Glass ≈ bottom square
+ 1400 / 2757 ≈ 50%
+*/
+#fullJar {
+  position: absolute;
+  z-index: 1;
+  overflow: hidden;
+
+  left: 40px;
+  width: 220px;
+
+  top: 150px;
+  height: 220px;
 }
 
 /* Individual buttons */
@@ -65,7 +91,7 @@ h1 {
   user-select: none;
 }
 
-/* Passed days feel lighter */
+/* Passed days softer */
 #emptyJar .button {
   opacity: 0.6;
 }
